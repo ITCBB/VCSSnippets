@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>"Person"-Klasse</Title>
+        </Header>
+        <Snippet>
+            <Code Language="CSharp">
+                <![CDATA[public enum Haircolor
+                    {
+                        Blond,
+                        Red,
+                        Brown,
+                        Black,
+                    }
+
+                    public class Person : INotifyPropertyChanged
+                    {
+                        string name;
+                        DateTime birthday;
+                        Haircolor haircolor;
+                        decimal weight;
+                        decimal height;
+                        string street;
+                        string country;
+                        string phone;
+                        string mail;
+                        Color favoriteColor;
+
+                        public string Name { get => name; set => SetProperty(ref name, value); }
+                        public DateTime Birthday { get => birthday; set => SetProperty(ref birthday, value); }
+                        public Haircolor Haircolor { get => haircolor; set => SetProperty(ref haircolor, value); }
+                        public decimal Weight { get => weight; set => SetProperty(ref weight, value); }
+                        public decimal Height { get => height; set => SetProperty(ref height, value); }
+                        public string Street { get => street; set => SetProperty(ref street, value); }
+                        public string Country { get => country; set => SetProperty(ref country, value); }
+                        public string Phone { get => phone; set => SetProperty(ref phone, value); }
+                        public string Mail { get => mail; set => SetProperty(ref mail, value); }
+                        public Color FavoriteColor { get => favoriteColor; set => SetProperty(ref favoriteColor, value); }
+
+                        public int Age => (DateTime.Now.Year - Birthday.Year);
+
+                        #region INotifyPropertyChanged Members
+                        /// <summary>
+                        /// Setzt das mit ref übergebene Property auf den übergebenen Wert value und löst PropertyChanged aus
+                        /// </summary>
+                        protected bool SetProperty<T>(ref T storage, T value, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null) //[BB170407]
+                        {
+                            if (object.Equals(storage, value)) return false;
+
+                            storage = value;
+                            this.OnPropertyChanged(propertyName);
+                            return true;
+                        }
+                        /// <summary>
+                        /// Aufzurufen, wenn der Wert eines Properties sich verändert
+                        /// </summary>
+                        /// <param name="propertyName">Name des Propertys</param>
+                        protected virtual void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                        /// <summary>
+                        /// Wird ausgelöst, wenn der Wert eines Properties sich verändert
+                        /// </summary>
+                        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+                        #endregion
+                    }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

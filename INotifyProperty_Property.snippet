@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>INotifyPropertyChanged Property Implementation</Title>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>Name</ID>
+                    <ToolTip>Enter the property name</ToolTip>
+                    <Default>Name</Default>
+                </Literal>
+                <Literal>
+                    <ID>name</ID>
+                    <ToolTip>Enter the private name</ToolTip>
+                    <Default>name</Default>
+                </Literal>
+                <Literal>
+                    <ID>Type</ID>
+                    <ToolTip>Enter the property type</ToolTip>
+                    <Default>string</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="CSharp">
+                <![CDATA[$Type$ $name$;
+                    public $Type$ $Name$ { get => $name$; set => SetProperty(ref $name$, value); }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

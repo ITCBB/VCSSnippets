@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>DependencyProperty Implementation</Title>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>Name</ID>
+                    <ToolTip>Enter the method name</ToolTip>
+                    <Default>Text</Default>
+                </Literal>
+                <Literal>
+                    <ID>NameProperty</ID>
+                    <ToolTip>Enter the property name</ToolTip>
+                    <Default>TextProperty</Default>
+                </Literal>
+                 <Literal>
+                    <ID>Type</ID>
+                    <ToolTip>Enter the type of the property</ToolTip>
+                    <Default>string</Default>
+                </Literal>
+                <Literal Editable="false">
+                    <ID>Classname</ID>
+                    <ToolTip>Class name</ToolTip>
+                    <Function>ClassName()</Function>
+                </Literal>
+            </Declarations>
+            <Code Language="CSharp">
+                <![CDATA[public static readonly DependencyProperty $NameProperty$ = NestedControlType.$NameProperty$.AddOwner(typeof($Classname$), new FrameworkPropertyMetadata($NameProperty$Changed));
+                    public $Type$ $Name$ { get => ($Type$)GetValue($NameProperty$); set => SetValue($NameProperty$, value); }
+                    private static void $NameProperty$Changed(DependencyObject obj, DependencyPropertyChangedEventArgs e) => (obj as $Classname$).MyNestedControl.$Name$ = ($Type$)e.NewValue;
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>"Person"-Generator</Title>
+        </Header>
+        <Snippet>
+            <Code Language="CSharp">
+                <![CDATA[#region People
+                    public ObservableCollection<Person> People { get; set; } = new ObservableCollection<Person>();
+                    public List<string> Names = new List<string>() { "Alfred","Anna","Benjamin","Beth","Carl","Charlyn","Cindy","Corrine","Deborah","Elmira","Gale","Garnet","Kathryne","Laura","Palmer","Paulita","Ronald","Rosana","Rubye","Sammy","Sheri","Slyvia","Wilford" };
+                    public void GeneratePeople(int Count = 10000)
+                    {
+                        var R = new Random();
+                        for (int i = 0; i < Count; i++)
+                        {
+                            var tmp = new Person();
+                            tmp.Name = Names[R.Next(Names.Count)];
+                            tmp.Birthday = new DateTime(R.Next(1950, 1998), R.Next(1, 12), R.Next(1, 19));
+                            tmp.Haircolor = (Haircolor)R.Next(0, 3);
+                            tmp.Height = R.Next(165, 185);
+                            tmp.Weight = R.Next(55, 120);
+                            tmp.Street = $$"{tmp.Name}street 1";
+                            tmp.Country = "World";
+                            tmp.Mail = $$"{tmp.Name}@aol.com";
+                            tmp.Phone = "017" + R.Next(111111111, 999999999).ToString();
+                            tmp.FavoriteColor = Color.FromRgb((byte)R.Next(255), (byte)R.Next(255), (byte)R.Next(255));
+
+                            People.Add(tmp);
+                        }
+                    }
+                    #endregion]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
