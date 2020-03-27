@@ -2,35 +2,39 @@
 <CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
     <CodeSnippet Format="1.0.0">
         <Header>
-            <Title>DependencyProperty Implementation</Title>
+            <Title>DependencyProperty</Title>
         </Header>
         <Snippet>
             <Declarations>
                 <Literal>
                     <ID>Name</ID>
-                    <ToolTip>Enter the method name</ToolTip>
+                    <ToolTip>Enter the property name</ToolTip>
                     <Default>Text</Default>
                 </Literal>
                 <Literal>
-                    <ID>NameProperty</ID>
-                    <ToolTip>Enter the property name</ToolTip>
-                    <Default>TextProperty</Default>
-                </Literal>
-                 <Literal>
                     <ID>Type</ID>
                     <ToolTip>Enter the type of the property</ToolTip>
                     <Default>string</Default>
                 </Literal>
-                <Literal Editable="false">
-                    <ID>Classname</ID>
-                    <ToolTip>Class name</ToolTip>
+                <Literal>
+                    <ID>DefaultValue</ID>
+                    <ToolTip>Enter the default value of the property</ToolTip>
+                    <Default>string</Default>
+                </Literal>
+                <Literal default="true" Editable="false">
+                    <ID>ParentType</ID>
+                    <ToolTip>Parent type</ToolTip>
                     <Function>ClassName()</Function>
+                    <Default>ClassNamePlaceholder</Default>
                 </Literal>
             </Declarations>
             <Code Language="CSharp">
-                <![CDATA[public static readonly DependencyProperty $NameProperty$ = NestedControlType.$NameProperty$.AddOwner(typeof($Classname$), new FrameworkPropertyMetadata($NameProperty$Changed));
-                    public $Type$ $Name$ { get => ($Type$)GetValue($NameProperty$); set => SetValue($NameProperty$, value); }
-                    private static void $NameProperty$Changed(DependencyObject obj, DependencyPropertyChangedEventArgs e) => (obj as $Classname$).MyNestedControl.$Name$ = ($Type$)e.NewValue;]]>
+                <![CDATA[public static readonly DependencyProperty $Name$Property = DependencyProperty.Register("$Name$", typeof($Type$), typeof($ParentType$), new UIPropertyMetadata($DefaultValue$));
+                    public $Type$ $Name$
+                    {
+                        get { return ($Type$)GetValue($Name$Property); }
+                        set { SetValue($Name$Property, value); }
+                    }]]>
             </Code>
         </Snippet>
     </CodeSnippet>
